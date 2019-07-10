@@ -1,15 +1,22 @@
-\documentclass{beamer}
+\documentclass[10pts]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 %\usepackage[french]{babel}
 \usepackage{amsmath, amsfonts, amsthm, amssymb}
-\usepackage{hyperref}
 \usepackage{tcolorbox}
 \usepackage{sagetex}
 \usepackage{fancyvrb}
 
-\usetheme{default}
 
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+
+\beamertemplatenavigationsymbolsempty
 
 \title{Sage\TeX ~tutorial}
 \author{Pauline Hubert}
@@ -38,7 +45,8 @@
 				$SAGE_ROOT/local/share/texmf/tex/latex/sagetex
 			\end{verbatim}
 			where \texttt{\$SAGE\_ROOT} is where you installed sage on your computer.
-			%Add link
+			
+			Or click on \href{https://phubert.github.io/sagetex.sty}{this link} to download it.
 			%/home/pauline/texmf/tex/latex
 			\item Add the package \texttt{sagetex} in your tex file.
 			\item Add SageTex commands in your latex.
@@ -46,7 +54,7 @@
 			\item Execute this file in a terminal.
 			\begin{verbatim}
 			sage FILE_NAME.sagetex.sage
-			\end{verbatim}
+			\end{verbatim} 
 			\item Compile your latex once again. 
 			 
 		\end{enumerate}
@@ -74,19 +82,28 @@ $\sage{number_of_partitions(150)}$ partitions.
 	\end{frame}
 
 	\begin{frame}[fragile]{Sage block}
-	You can print some sage code using \texttt{sageblock}. \newline
+	You can print sage code using \texttt{sageblock}.
+	For example, I write:
 	
-	I can write
 	\begin{Verbatim}[frame=single]
+To get the list all the integer from 5 to 25 and
+define the function f, I type in Sage :
 \begin{sageblock}
+	[i for i in range(5, 26)]
 	f(x) = exp(x) * sin(2*x)
+	print f
+	f
 \end{sageblock}
 	\end{Verbatim}
 	
 	And I get : 
 	
+	To get the list all the integer from 5 to 25, I type in Sage :
 	\begin{sageblock}
+		[i for i in range(5, 26)]
 		f(x) = exp(x) * sin(2*x)
+		print f
+		f
 	\end{sageblock}
 		
 	\end{frame}
@@ -96,12 +113,10 @@ $\sage{number_of_partitions(150)}$ partitions.
 		What I write
 		\begin{Verbatim}[frame=single]
 \begin{sagecommandline}
-	sage: 1+1
-	sage: is_prime(57)
-	sage: if is_prime(57):
-	....:     print('prime')
-	....: else:
-	....:     print('composite')
+	sage: [i for i in range(5, 26)]
+	sage: f(x) = exp(x) * sin(2*x)
+	sage: print f
+	sage: f
 \end{sagecommandline}
 		\end{Verbatim}	
 	
@@ -112,12 +127,10 @@ $\sage{number_of_partitions(150)}$ partitions.
 		What I get
 		
 		\begin{sagecommandline}
-			sage: 1+1
-			sage: is_prime(57)
-			sage: if is_prime(57):
-			....:     print('prime')
-			....: else:
-			....:     print('composite')
+			sage: [i for i in range(5, 26)]
+			sage: f(x) = exp(x) * sin(2*x)
+			sage: print f
+			sage: f
 		\end{sagecommandline}	
 		
 		\end{frame}
@@ -129,7 +142,7 @@ $\sage{number_of_partitions(150)}$ partitions.
 		\begin{Verbatim}[frame=single]
 \begin{sagesilent}
 	var('x,y')
-	M = matrix([[i+j for i in range(3)] 
+	M = matrix([[i*x+j*y for i in range(3)] 
 			for j in range(3)])
 \end{sagesilent}
 
@@ -146,7 +159,7 @@ $\sage{M.determinant()}$.
 		
 		\begin{sagesilent}
 			var('x,y')
-			M = matrix([[i+j for i in range(3)] for j in range(3)])
+			M = matrix([[i*x+j*y for i in range(3)] for j in range(3)])
 		\end{sagesilent}
 	
 		And I get : \newline
