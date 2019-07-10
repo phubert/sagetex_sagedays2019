@@ -12,3 +12,5 @@
 *.gz
 *.tdo
 *.vrb
+*.sagetex.*
+*.sage
